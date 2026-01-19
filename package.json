@@ -7,7 +7,7 @@
   "scripts": {
     "test": "playwright test",
     "test:headed": "playwright test --headed",
-    "test:web": "playwright test tests/web",
+    "test:web": "playwright test tests/web --project=chromium-desktop",
     "test:api": "playwright test tests/api --project=api",
     "test:chrome": "playwright test tests/web --project=chromium-desktop --project=chromium-mobile --project=chromium-tablet",
     "test:firefox": "playwright test tests/web --project=firefox-desktop --project=firefox-mobile --project=firefox-tablet",
@@ -18,8 +18,9 @@
     "allure:open": "allure open allure-report",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
-    "format": "prettier --write \"**/*.{js,json,md}\"",
-    "format:check": "prettier --check \"**/*.{js,json,md}\""
+    "format": "prettier --write \"**/*.{js,ts,json,md}\"",
+    "format:check": "prettier --check \"**/*.{js,ts,json,md}\"",
+    "type-check": "tsc --noEmit"
   },
   "keywords": [
     "playwright",
@@ -35,22 +36,28 @@
   "devDependencies": {
     "@faker-js/faker": "^9.0.3",
     "@playwright/test": "^1.48.0",
+    "@types/node": "^20.14.0",
+    "@typescript-eslint/eslint-plugin": "^7.13.0",
+    "@typescript-eslint/parser": "^7.13.0",
     "allure-commandline": "^2.32.0",
     "allure-playwright": "^3.0.3",
     "dotenv": "^16.4.5",
     "eslint": "^8.57.1",
     "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-airbnb-typescript": "^18.0.0",
+    "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-import": "^2.31.0",
     "eslint-plugin-playwright": "^1.8.2",
     "husky": "^9.1.7",
     "lint-staged": "^16.2.6",
-    "prettier": "^3.3.3"
+    "prettier": "^3.3.3",
+    "typescript": "^5.5.0"
   },
   "engines": {
     "node": ">=18.0.0"
   },
   "lint-staged": {
-    "*.js": [
+    "*.{js,ts}": [
       "eslint --fix",
       "prettier --write"
     ],

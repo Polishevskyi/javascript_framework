@@ -4,31 +4,50 @@
     "es2021": true,
     "node": true
   },
-  "extends": ["airbnb-base", "plugin:playwright/recommended"],
+  "extends": ["airbnb-base", "airbnb-typescript/base", "plugin:playwright/recommended", "prettier"],
+  "parser": "@typescript-eslint/parser",
   "parserOptions": {
     "ecmaVersion": "latest",
-    "sourceType": "module"
+    "sourceType": "module",
+    "project": "./tsconfig.json"
   },
-  "plugins": ["playwright"],
+  "plugins": ["@typescript-eslint", "playwright"],
   "rules": {
     "no-console": "off",
     "import/extensions": "off",
+    "@typescript-eslint/import/extensions": "off",
     "class-methods-use-this": "off",
     "no-await-in-loop": "off",
     "import/prefer-default-export": "off",
-    "max-len": ["error", { "code": 120, "ignoreComments": true }],
+    "max-len": "off",
     "import/no-extraneous-dependencies": ["error", { "devDependencies": true }],
     "no-constructor-return": "off",
+    "@typescript-eslint/no-constructor-return": "off",
     "playwright/expect-expect": "off",
     "playwright/no-wait-for-selector": "off",
     "playwright/no-wait-for-timeout": "off",
     "func-names": "off",
     "comma-dangle": "off",
+    "@typescript-eslint/comma-dangle": "off",
     "object-curly-newline": "off",
     "object-curly-spacing": "off",
     "object-property-newline": "off",
     "indent": "off",
-    "quotes": "error",
-    "semi": "error"
-  }
+    "@typescript-eslint/indent": "off",
+    "quotes": "off",
+    "@typescript-eslint/quotes": ["error", "single"],
+    "semi": "off",
+    "@typescript-eslint/semi": "error"
+  },
+  "overrides": [
+    {
+      "files": ["*.js"],
+      "parser": "espree",
+      "parserOptions": {
+        "ecmaVersion": "latest",
+        "sourceType": "module"
+      },
+      "extends": ["airbnb-base", "plugin:playwright/recommended"]
+    }
+  ]
 }
