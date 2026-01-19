@@ -1,45 +1,33 @@
-import { test } from '@playwright/test';
-import BasePage from '../../src/web/pages/BasePage.js';
-import { LoginPage } from '../../src/web/pages/LoginPage.js';
-import { ProductsPage, PRODUCTS_PAGE_LOCATORS } from '../../src/web/pages/ProductsPage.js';
-import { CartPage, CART_PAGE_LOCATORS } from '../../src/web/pages/CartPage.js';
-import Constants from '../../src/utils/constants.js';
-
-const { CART_COUNTS, PAGE_TITLES, PRODUCT_NAMES, URLS, ITEM_COUNTS } = Constants;
+import { test, expect } from '../../src/web/fixtures/baseTest.js';
 
 test.describe('Shopping cart functionality', () => {
-  test('Add multiple products to cart and remove one', async ({ page }) => {
-    const basePage = new BasePage(page);
-    const loginPage = new LoginPage(page);
-    const productsPage = new ProductsPage(page);
-    const cartPage = new CartPage(page);
-    const productsScreen = { locators: PRODUCTS_PAGE_LOCATORS };
-    const cartScreen = { locators: CART_PAGE_LOCATORS };
-    await basePage.goto(URLS.ROOT);
-    await loginPage.login(process.env.STANDARD_USER!, process.env.STANDARD_PASSWORD!);
-    await productsPage.assertElementTextEquals(productsScreen.locators.pageTitle, PAGE_TITLES.PRODUCTS);
+  test('Verify that user can add multiple products to cart and remove one', async ({
+    loggedInProductsPage,
+    cartPage,
+    constants,
+  }) => {
+    const { COUNTS, PAGE_TITLES, PRODUCT_NAMES, PRODUCT_IDS } = constants;
+    await expect.soft(loggedInProductsPage.pageTitle).toHaveText(PAGE_TITLES.PRODUCTS);
 
-    await productsPage.addProductAndVerifyCart(productsScreen.locators.PRODUCTS.BACKPACK, CART_COUNTS.ONE_ITEM);
-    await productsPage.addProductAndVerifyCart(productsScreen.locators.PRODUCTS.BIKE_LIGHT, CART_COUNTS.TWO_ITEMS);
-    await productsPage.addProductAndVerifyCart(productsScreen.locators.PRODUCTS.BOLT_TSHIRT, CART_COUNTS.THREE_ITEMS);
+    await loggedInProductsPage.addProductAndVerifyCart(PRODUCT_IDS.BACKPACK, COUNTS.ONE);
+    await loggedInProductsPage.addProductAndVerifyCart(PRODUCT_IDS.BIKE_LIGHT, COUNTS.TWO);
+    await loggedInProductsPage.addProductAndVerifyCart(PRODUCT_IDS.BOLT_TSHIRT, COUNTS.THREE);
 
-    await productsPage.tapWhenVisible(productsScreen.locators.shoppingCartLink);
-    await cartPage.assertElementTextEquals(cartScreen.locators.pageTitle, PAGE_TITLES.YOUR_CART);
+    await loggedInProductsPage.clickShoppingCart();
+    await expect.soft(cartPage.pageTitle).toHaveText(PAGE_TITLES.YOUR_CART);
 
-    const itemsCount = await cartPage.getElementCount(cartScreen.locators.cartItem);
-    cartPage.assertEqual(itemsCount, ITEM_COUNTS.THREE);
+    await expect.soft(cartPage.getItemsCount()).resolves.toBe(COUNTS.THREE);
 
-    const items = await cartPage.getAllTexts(cartScreen.locators.cartItemName);
-    cartPage.assertArrayContains(items, PRODUCT_NAMES.BACKPACK);
-    cartPage.assertArrayContains(items, PRODUCT_NAMES.BIKE_LIGHT);
-    cartPage.assertArrayContains(items, PRODUCT_NAMES.BOLT_TSHIRT);
+    const items = await cartPage.getItemsNames();
+    expect.soft(items).toContain(PRODUCT_NAMES.BACKPACK);
+    expect.soft(items).toContain(PRODUCT_NAMES.BIKE_LIGHT);
+    expect.soft(items).toContain(PRODUCT_NAMES.BOLT_TSHIRT);
 
-    await cartPage.tapWhenVisible(cartScreen.locators.removeButton(productsScreen.locators.PRODUCTS.BIKE_LIGHT));
-    const itemsCountAfterRemoval = await cartPage.getElementCount(cartScreen.locators.cartItem);
-    cartPage.assertEqual(itemsCountAfterRemoval, ITEM_COUNTS.TWO);
+    await cartPage.removeProduct(PRODUCT_IDS.BIKE_LIGHT);
+    await expect.soft(cartPage.getItemsCount()).resolves.toBe(COUNTS.TWO);
 
-    await cartPage.tapWhenVisible(cartScreen.locators.continueShoppingButton);
-    await productsPage.assertElementTextEquals(productsScreen.locators.pageTitle, PAGE_TITLES.PRODUCTS);
-    await productsPage.assertElementTextEquals(productsScreen.locators.shoppingCartBadge, CART_COUNTS.TWO_ITEMS);
+    await cartPage.clickContinueShopping();
+    await expect.soft(loggedInProductsPage.pageTitle).toHaveText(PAGE_TITLES.PRODUCTS);
+    await expect.soft(loggedInProductsPage.shoppingCartBadge).toHaveText(`${COUNTS.TWO}`);
   });
 });

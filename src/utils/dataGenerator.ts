@@ -1,5 +1,6 @@
 import { faker } from '@faker-js/faker';
 
+// API types
 interface PetData {
   id: number;
   category: {
@@ -15,12 +16,14 @@ interface PetData {
   status: 'available' | 'pending' | 'sold';
 }
 
+// Web types
 interface UserInfo {
   firstName: string;
   lastName: string;
   postalCode: string;
 }
 
+// API generators
 const generatePet = (): PetData => ({
   id: faker.number.int({ min: 1, max: 100000 }),
   category: {
@@ -39,14 +42,12 @@ const generatePet = (): PetData => ({
 });
 
 const generatePetUpdate = (existingPet: PetData): PetData => ({
-  id: existingPet.id,
+  ...existingPet,
   name: faker.animal.type(),
-  category: existingPet.category,
-  photoUrls: existingPet.photoUrls,
-  tags: existingPet.tags,
   status: faker.helpers.arrayElement(['available', 'pending', 'sold']),
 });
 
+// Web generators
 class DataGenerator {
   static generateUserInfo(): UserInfo {
     return {

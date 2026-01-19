@@ -23,7 +23,7 @@
     "import/no-extraneous-dependencies": ["error", { "devDependencies": true }],
     "no-constructor-return": "off",
     "@typescript-eslint/no-constructor-return": "off",
-    "playwright/expect-expect": "off",
+    "playwright/expect-expect": "error",
     "playwright/no-wait-for-selector": "off",
     "playwright/no-wait-for-timeout": "off",
     "func-names": "off",

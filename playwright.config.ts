@@ -1,5 +1,7 @@
 import { defineConfig, devices, type PlaywrightTestConfig } from '@playwright/test';
-import 'dotenv/config';
+import { config } from 'dotenv';
+
+config();
 
 const browsers = {
   chromium: devices['Desktop Chrome'],
@@ -39,9 +41,9 @@ const projects: PlaywrightTestConfig['projects'] = [
 
 export default defineConfig({
   fullyParallel: true,
-  retries: 3,
-  workers: 9,
-  testMatch: /.*\.(test|spec)\.(ts|js)/,
+  retries: Number(process.env.PLAYWRIGHT_RETRIES!),
+  workers: Number(process.env.PLAYWRIGHT_WORKERS!),
+  testMatch: /.*\.(test|spec)\.(ts|js|tsx|jsx)/,
   reporter: [['allure-playwright', { outputFolder: 'allure-results' }]],
   use: {
     headless: true,

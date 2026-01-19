@@ -1,27 +1,60 @@
-import BasePage, { BASE_LOCATORS } from './BasePage.js';
-
-const CHECKOUT_PAGE_LOCATORS = {
-  ...BASE_LOCATORS,
-  firstNameInput: '#first-name',
-  lastNameInput: '#last-name',
-  postalCodeInput: '#postal-code',
-  continueButton: '#continue',
-  cancelButton: '#cancel',
-  subtotalLabel: '.summary_subtotal_label',
-  taxLabel: '.summary_tax_label',
-  totalLabel: '.summary_total_label',
-  finishButton: '#finish',
-  completeHeader: '.complete-header',
-  completeText: '.complete-text',
-  backHomeButton: '#back-to-products',
-};
+import { type Locator } from '@playwright/test';
+import BasePage from './BasePage.js';
 
 class CheckoutPage extends BasePage {
+  readonly completeHeader: Locator;
+
+  readonly completeText: Locator;
+
+  private readonly firstNameInput: Locator;
+
+  private readonly lastNameInput: Locator;
+
+  private readonly postalCodeInput: Locator;
+
+  private readonly continueButton: Locator;
+
+  private readonly finishButton: Locator;
+
+  private readonly backHomeButton: Locator;
+
+  constructor(page: BasePage['page']) {
+    super(page);
+    this.firstNameInput = this.page.locator('#first-name');
+    this.lastNameInput = this.page.locator('#last-name');
+    this.postalCodeInput = this.page.locator('#postal-code');
+    this.continueButton = this.page.locator('#continue');
+    this.finishButton = this.page.locator('#finish');
+    this.completeHeader = this.page.locator('.complete-header');
+    this.completeText = this.page.locator('.complete-text');
+    this.backHomeButton = this.page.locator('#back-to-products');
+  }
+
   async fillCheckoutInfo(firstName: string, lastName: string, postalCode: string): Promise<void> {
-    await this.setValue(CHECKOUT_PAGE_LOCATORS.firstNameInput, firstName);
-    await this.setValue(CHECKOUT_PAGE_LOCATORS.lastNameInput, lastName);
-    await this.setValue(CHECKOUT_PAGE_LOCATORS.postalCodeInput, postalCode);
+    await this.firstNameInput.fill(firstName);
+    await this.lastNameInput.fill(lastName);
+    await this.postalCodeInput.fill(postalCode);
+  }
+
+  async clickContinue(): Promise<void> {
+    await this.continueButton.click();
+  }
+
+  async waitForFinishButton(): Promise<void> {
+    await this.finishButton.waitFor({ state: 'visible' });
+  }
+
+  async clickFinish(): Promise<void> {
+    await this.finishButton.click();
+  }
+
+  async clickBackHome(): Promise<void> {
+    await this.backHomeButton.click();
+  }
+
+  async waitForCheckoutForm(): Promise<void> {
+    await this.firstNameInput.waitFor({ state: 'visible' });
   }
 }
 
-export { CheckoutPage, CHECKOUT_PAGE_LOCATORS };
+export { CheckoutPage };
