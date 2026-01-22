@@ -22,7 +22,7 @@ const projects: PlaywrightTestConfig['projects'] = [
       testDir: './tests/web',
       use: {
         ...device,
-        baseURL: process.env.BASE_URL!,
+        baseURL: process.env.WEB_BASE_URL!,
         viewport,
         screenshot: 'only-on-failure' as const,
       },
@@ -41,12 +41,12 @@ const projects: PlaywrightTestConfig['projects'] = [
 
 export default defineConfig({
   fullyParallel: true,
-  retries: Number(process.env.PLAYWRIGHT_RETRIES!),
-  workers: Number(process.env.PLAYWRIGHT_WORKERS!),
+  retries: 3,
+  workers: 3,
   testMatch: /.*\.(test|spec)\.(ts|js|tsx|jsx)/,
-  reporter: 'list', // Removed Allure reporter
+  reporter: 'list',
   use: {
-    headless: true,
+    headless: process.env.WEB_HEADLESS === 'true',
     trace: 'retain-on-failure',
     video: 'retain-on-failure',
     navigationTimeout: 10_000,

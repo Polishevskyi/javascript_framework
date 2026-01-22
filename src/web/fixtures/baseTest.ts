@@ -4,7 +4,7 @@ import { ProductsPage } from '../pages/ProductsPage.js';
 import { CartPage } from '../pages/CartPage.js';
 import { CheckoutPage } from '../pages/CheckoutPage.js';
 import DataGenerator from '../../utils/dataGenerator.js';
-import Constants from '../../utils/constants.js';
+import { WebConstants } from '../../utils/constants.js';
 
 export const test = base.test.extend<{
   cartPage: CartPage;
@@ -13,7 +13,7 @@ export const test = base.test.extend<{
   productsPage: ProductsPage;
   loggedInHomePage: base.Page;
   loggedInProductsPage: ProductsPage;
-  constants: typeof Constants;
+  constants: typeof WebConstants;
   dataGenerator: typeof DataGenerator;
 }>({
   cartPage: async ({ page }, use) => {
@@ -34,7 +34,7 @@ export const test = base.test.extend<{
 
   loggedInHomePage: async ({ page, loginPage }, use) => {
     await loginPage.waitForLoginPage();
-    await loginPage.login(process.env.STANDARD_USER!, process.env.STANDARD_PASSWORD!);
+    await loginPage.login(process.env.WEB_CREDENTIALS_USERNAME!, process.env.WEB_CREDENTIALS_PASSWORD!);
     await use(page);
   },
 
@@ -43,7 +43,7 @@ export const test = base.test.extend<{
   },
 
   constants: async ({}, use) => {
-    await use(Constants);
+    await use(WebConstants);
   },
 
   dataGenerator: async ({}, use) => {

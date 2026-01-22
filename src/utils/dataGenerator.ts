@@ -65,6 +65,18 @@ const WebDataGenerator = {
   },
 } as const;
 
+// Mobile data generators
+export class MobileDataGenerator {
+  static generateInvalidCredentials() {
+    return {
+      invalidUsername: faker.internet.email(),
+      invalidPassword: faker.internet.password(),
+      randomUsername: faker.internet.username(),
+      randomPassword: faker.internet.password({ length: 15 }),
+    };
+  }
+}
+
 export { PetDataGenerator };
 export default WebDataGenerator;
 export { PetDataGenerator as PetFactory };

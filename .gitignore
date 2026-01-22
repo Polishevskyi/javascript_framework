@@ -62,3 +62,11 @@ temp/
 # Debug
 debug.log
 
+# Mobile Testing
+apps/*.apk
+apps/*.ipa
+apps/*.app
+!apps/README.md
+.appiumrc
+appium.log
+

@@ -48,6 +48,18 @@
         "sourceType": "module"
       },
       "extends": ["airbnb-base", "plugin:playwright/recommended"]
+    },
+    {
+      "files": ["tests/mobile/**/*.ts"],
+      "rules": {
+        "playwright/no-standalone-expect": "off"
+      }
+    },
+    {
+      "files": ["src/utils/dataGenerator.ts"],
+      "rules": {
+        "max-classes-per-file": "off"
+      }
     }
   ]
 }
