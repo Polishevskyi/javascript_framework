@@ -44,11 +44,12 @@ export default defineConfig({
   retries: 3,
   workers: 5,
   testMatch: /.*\.(test|spec)\.(ts|js|tsx|jsx)/,
-  reporter: 'list',
+  reporter: [['list'], ['allure-playwright', { outputFolder: 'allure-results', detail: true, suiteTitle: true }]],
   use: {
     headless: process.env.WEB_HEADLESS === 'true',
     trace: 'retain-on-failure',
     video: 'retain-on-failure',
+    screenshot: 'only-on-failure',
     navigationTimeout: 10_000,
     actionTimeout: 10_000,
   },

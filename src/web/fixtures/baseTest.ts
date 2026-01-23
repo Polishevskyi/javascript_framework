@@ -5,6 +5,7 @@ import { CartPage } from '../pages/CartPage.js';
 import { CheckoutPage } from '../pages/CheckoutPage.js';
 import DataGenerator from '../../utils/dataGenerator.js';
 import { WebConstants } from '../../utils/constants.js';
+import { wrapInAllureStep } from '../../utils/allure-proxy.js';
 
 export const test = base.test.extend<{
   cartPage: CartPage;
@@ -17,19 +18,19 @@ export const test = base.test.extend<{
   dataGenerator: typeof DataGenerator;
 }>({
   cartPage: async ({ page }, use) => {
-    await use(new CartPage(page));
+    await use(wrapInAllureStep(new CartPage(page)));
   },
 
   checkoutPage: async ({ page }, use) => {
-    await use(new CheckoutPage(page));
+    await use(wrapInAllureStep(new CheckoutPage(page)));
   },
 
   loginPage: async ({ page }, use) => {
-    await use(new LoginPage(page));
+    await use(wrapInAllureStep(new LoginPage(page)));
   },
 
   productsPage: async ({ page }, use) => {
-    await use(new ProductsPage(page));
+    await use(wrapInAllureStep(new ProductsPage(page)));
   },
 
   loggedInHomePage: async ({ page, loginPage }, use) => {
@@ -39,7 +40,7 @@ export const test = base.test.extend<{
   },
 
   loggedInProductsPage: async ({ loggedInHomePage }, use) => {
-    await use(new ProductsPage(loggedInHomePage));
+    await use(wrapInAllureStep(new ProductsPage(loggedInHomePage)));
   },
 
   constants: async ({}, use) => {

@@ -32,6 +32,14 @@ export const config: Options.Testrunner = {
         realtimeReporting: true,
       },
     ],
+    [
+      'allure',
+      {
+        outputDir: 'allure-results',
+        disableWebdriverStepsReporting: false,
+        disableWebdriverScreenshotsReporting: false,
+      },
+    ],
   ],
   maxInstances: isCloud ? 4 : 1,
   capabilities: CapabilitiesFactory.createCapabilities(),

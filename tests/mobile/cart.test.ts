@@ -1,6 +1,6 @@
 import { expect, productsScreen, cartScreen, MobileConstants } from '../../src/mobile/fixtures/baseTest.js';
 
-describe('Mobile - Cart Tests', () => {
+describe('Cart functionality', () => {
   it('Verify that user can add and remove product from cart', async () => {
     const productName = await productsScreen.getFirstProductName();
     await productsScreen.tapOnFirstProduct();

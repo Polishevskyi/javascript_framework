@@ -9,7 +9,7 @@ import {
   LoginErrorTypes,
 } from '../../src/mobile/fixtures/baseTest.js';
 
-describe('Mobile - Login Negative Tests', () => {
+describe('Login negative cases functionality', () => {
   const { invalidUsername, invalidPassword, randomUsername, randomPassword } =
     MobileDataGenerator.generateInvalidCredentials();
 

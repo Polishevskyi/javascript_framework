@@ -1,6 +1,6 @@
 import { expect, productsScreen, MobileConstants } from '../../src/mobile/fixtures/baseTest.js';
 
-describe('Mobile - Sort Goods Tests', () => {
+describe('Goods cases functionality', () => {
   interface SortTestData {
     description: string;
     applySort: () => Promise<void>;

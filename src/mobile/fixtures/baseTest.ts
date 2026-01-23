@@ -5,11 +5,12 @@ import { LoginScreen, LoginErrorTypes, type LoginErrorType } from '../screens/Lo
 import { MenuScreen } from '../screens/MenuScreen.js';
 import { ProductsScreen } from '../screens/ProductsScreen.js';
 import { CartScreen } from '../screens/CartScreen.js';
+import { wrapInAllureStep } from '../../utils/allure-proxy.js';
 
-const loginScreen = new LoginScreen();
-const menuScreen = new MenuScreen();
-const productsScreen = new ProductsScreen();
-const cartScreen = new CartScreen();
+const loginScreen = wrapInAllureStep(new LoginScreen());
+const menuScreen = wrapInAllureStep(new MenuScreen());
+const productsScreen = wrapInAllureStep(new ProductsScreen());
+const cartScreen = wrapInAllureStep(new CartScreen());
 
 const validCredentials = {
   username: process.env.MOBILE_CREDENTIALS_USERNAME as string,

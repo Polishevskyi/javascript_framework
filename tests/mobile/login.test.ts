@@ -1,6 +1,6 @@
 import { expect, productsScreen, validCredentials, MobileConstants } from '../../src/mobile/fixtures/baseTest.js';
 
-describe('Mobile - Login Tests', () => {
+describe('Login functionality', () => {
   it('Verify that user can login with valid credentials', async () => {
     const menuScreen = await productsScreen.openMenu();
     const loginScreen = await menuScreen.navigateToLogin();
