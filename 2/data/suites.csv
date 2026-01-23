@@ -1,0 +1,5 @@
+"DESCRIPTION","DURATION IN MS","NAME","PARENT SUITE","START TIME","STATUS","STOP TIME","SUB SUITE","SUITE","TEST CLASS","TEST METHOD"
+"","412","Verify that pet can be created successfully with valid data","api","Fri Jan 23 13:07:01 UTC 2026","passed","Fri Jan 23 13:07:01 UTC 2026","Create Pet","tests/api/createPet.test.ts","",""
+"","570","Verify that pet can be updated successfully with new data","api","Fri Jan 23 13:07:01 UTC 2026","passed","Fri Jan 23 13:07:01 UTC 2026","Update Pet","tests/api/updatePet.test.ts","",""
+"","591","Verify that pet can be deleted successfully by ID","api","Fri Jan 23 13:07:01 UTC 2026","passed","Fri Jan 23 13:07:01 UTC 2026","Delete Pet","tests/api/deletePet.test.ts","",""
+"","531","Verify that pet can be retrieved successfully by ID","api","Fri Jan 23 13:07:01 UTC 2026","passed","Fri Jan 23 13:07:01 UTC 2026","Get Pet","tests/api/getPet.test.ts","",""
