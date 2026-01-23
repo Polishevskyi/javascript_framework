@@ -143,6 +143,48 @@ jobs:
             echo "PLATFORM=${{ secrets.MOBILE_PLATFORM }}" >> $GITHUB_ENV
           fi
 
+      - name: Verify BrowserStack configuration
+        env:
+          BROWSERSTACK_USERNAME: ${{ secrets.BROWSERSTACK_USERNAME }}
+          BROWSERSTACK_ACCESS_KEY: ${{ secrets.BROWSERSTACK_ACCESS_KEY }}
+          BROWSERSTACK_ANDROID_APP: ${{ secrets.BROWSERSTACK_ANDROID_APP }}
+          BROWSERSTACK_IOS_APP: ${{ secrets.BROWSERSTACK_IOS_APP }}
+        run: |
+          echo "🔍 Checking BrowserStack configuration..."
+          echo "Platform: ${{ env.PLATFORM }}"
+          
+          if [ -z "$BROWSERSTACK_USERNAME" ]; then
+            echo "❌ BROWSERSTACK_USERNAME is not set"
+            exit 1
+          else
+            echo "✅ BROWSERSTACK_USERNAME is set"
+          fi
+          
+          if [ -z "$BROWSERSTACK_ACCESS_KEY" ]; then
+            echo "❌ BROWSERSTACK_ACCESS_KEY is not set"
+            exit 1
+          else
+            echo "✅ BROWSERSTACK_ACCESS_KEY is set"
+          fi
+          
+          if [ "${{ env.PLATFORM }}" == "android" ]; then
+            if [ -z "$BROWSERSTACK_ANDROID_APP" ]; then
+              echo "❌ BROWSERSTACK_ANDROID_APP is not set"
+              exit 1
+            else
+              echo "✅ BROWSERSTACK_ANDROID_APP is set: $BROWSERSTACK_ANDROID_APP"
+            fi
+          elif [ "${{ env.PLATFORM }}" == "ios" ]; then
+            if [ -z "$BROWSERSTACK_IOS_APP" ]; then
+              echo "❌ BROWSERSTACK_IOS_APP is not set"
+              exit 1
+            else
+              echo "✅ BROWSERSTACK_IOS_APP is set: $BROWSERSTACK_IOS_APP"
+            fi
+          fi
+          
+          echo "✅ All required BrowserStack credentials are configured"
+
       - name: Run Mobile tests
         env:
           MOBILE_PLATFORM: ${{ env.PLATFORM }}
