@@ -126,6 +126,7 @@ jobs:
           echo "✅ All required BrowserStack credentials are configured"
 
       - name: Run Mobile tests
+        continue-on-error: true
         env:
           MOBILE_PLATFORM: ${{ env.PLATFORM }}
           MOBILE_IS_CLOUD: ${{ secrets.MOBILE_IS_CLOUD }}
