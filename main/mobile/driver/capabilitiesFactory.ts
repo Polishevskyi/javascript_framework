@@ -25,6 +25,8 @@ export class CapabilitiesFactory {
   }
 
   private static createAndroidCloudCapabilities(): Capability {
+    const bstackOptions = this.getBrowserStackOptions();
+
     return {
       platformName: 'Android',
       'appium:deviceName': process.env.ANDROID_CLOUD_DEVICE_NAME!,
@@ -33,7 +35,11 @@ export class CapabilitiesFactory {
       'appium:app': process.env.BROWSERSTACK_ANDROID_APP!,
       'appium:appPackage': process.env.ANDROID_CLOUD_APP_PACKAGE!,
       'appium:appActivity': process.env.ANDROID_CLOUD_APP_ACTIVITY!,
-      'bstack:options': this.getBrowserStackOptions(),
+      'bstack:options': {
+        ...bstackOptions,
+        deviceName: process.env.ANDROID_CLOUD_DEVICE_NAME!,
+        osVersion: process.env.ANDROID_CLOUD_PLATFORM_VERSION!,
+      },
     };
   }
 
@@ -49,6 +55,8 @@ export class CapabilitiesFactory {
   }
 
   private static createIosCloudCapabilities(): Capability {
+    const bstackOptions = this.getBrowserStackOptions();
+
     return {
       platformName: 'iOS',
       'appium:deviceName': process.env.IOS_CLOUD_DEVICE_NAME!,
@@ -56,7 +64,11 @@ export class CapabilitiesFactory {
       'appium:automationName': 'XCUITest',
       'appium:app': process.env.BROWSERSTACK_IOS_APP!,
       'appium:bundleId': process.env.IOS_CLOUD_BUNDLE_ID!,
-      'bstack:options': this.getBrowserStackOptions(),
+      'bstack:options': {
+        ...bstackOptions,
+        deviceName: process.env.IOS_CLOUD_DEVICE_NAME!,
+        osVersion: process.env.IOS_CLOUD_PLATFORM_VERSION!,
+      },
     };
   }
 
