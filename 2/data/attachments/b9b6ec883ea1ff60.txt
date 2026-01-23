@@ -1,0 +1,4 @@
+{
+  "using": "xpath",
+  "value": "(//XCUIElementTypeStaticText[@name='store item text'])[1]"
+}
