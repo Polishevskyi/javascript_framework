@@ -1,4 +1,4 @@
-import { expect, productsScreen, MobileConstants } from '../../src/mobile/fixtures/baseTest.js';
+import { expect, productsScreen, MobileConstants } from '../../main/mobile/fixtures/baseTest.js';
 
 describe('Goods cases functionality', () => {
   interface SortTestData {

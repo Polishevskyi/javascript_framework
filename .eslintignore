@@ -1,8 +1,43 @@
+# Dependencies
 node_modules/
+.pnpm-store/
+
+# Build & cache
 dist/
+build/
+out/
+*.tsbuildinfo
+.cache/
+
+# Test results & reports
 allure-report/
 allure-results/
 playwright-report/
 test-results/
+blob-report/
+traces/
+videos/
+screenshots/
 coverage/
+.nyc_output/
+junit.xml
+
+# Mobile apps
+main/mobile/apps/
+*.apk
+*.ipa
+*.zip
+*.app
+
+# Logs
 *.log
+logs/
+log/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Config files (already formatted)
+package-lock.json
+yarn.lock
+pnpm-lock.yaml

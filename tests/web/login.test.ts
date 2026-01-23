@@ -1,4 +1,4 @@
-import { test, expect } from '../../src/web/fixtures/baseTest.js';
+import { test, expect } from '../../main/web/fixtures/baseTest.js';
 
 test.describe('Login and logout functionality', () => {
   test('Verify that user can successfully login and logout', async ({ loginPage, productsPage, constants }) => {

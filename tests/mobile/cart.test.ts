@@ -1,4 +1,4 @@
-import { expect, productsScreen, cartScreen, MobileConstants } from '../../src/mobile/fixtures/baseTest.js';
+import { expect, productsScreen, cartScreen, MobileConstants } from '../../main/mobile/fixtures/baseTest.js';
 
 describe('Cart functionality', () => {
   it('Verify that user can add and remove product from cart', async () => {

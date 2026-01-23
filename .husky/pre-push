@@ -1,0 +1,7 @@
+#!/usr/bin/env sh
+
+echo "🔍 Running linter..."
+npm run lint:check
+
+echo "✨ Checking code formatting..."
+npm run format:check

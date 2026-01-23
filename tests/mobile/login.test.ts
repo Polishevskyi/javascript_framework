@@ -1,4 +1,4 @@
-import { expect, productsScreen, validCredentials, MobileConstants } from '../../src/mobile/fixtures/baseTest.js';
+import { expect, productsScreen, validCredentials, MobileConstants } from '../../main/mobile/fixtures/baseTest.js';
 
 describe('Login functionality', () => {
   it('Verify that user can login with valid credentials', async () => {

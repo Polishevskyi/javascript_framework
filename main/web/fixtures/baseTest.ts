@@ -5,7 +5,7 @@ import { CartPage } from '../pages/CartPage.js';
 import { CheckoutPage } from '../pages/CheckoutPage.js';
 import DataGenerator from '../../utils/dataGenerator.js';
 import { WebConstants } from '../../utils/constants.js';
-import { wrapInAllureStep } from '../../utils/allure-proxy.js';
+import { wrapInAllureStep } from '../../utils/allureProxy.js';
 
 export const test = base.test.extend<{
   cartPage: CartPage;

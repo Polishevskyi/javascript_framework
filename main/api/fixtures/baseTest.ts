@@ -3,7 +3,7 @@ import { StatusCodes } from 'http-status-codes';
 import { PetSteps } from '../steps/petSteps.js';
 import { PetFactory } from '../../utils/dataGenerator.js';
 import { PetResponseSchema } from '../schemas/petSchema.js';
-import { wrapInAllureStep } from '../../utils/allure-proxy.js';
+import { wrapInAllureStep } from '../../utils/allureProxy.js';
 
 const test = base.test.extend<{
   petSteps: PetSteps;

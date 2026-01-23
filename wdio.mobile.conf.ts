@@ -1,6 +1,6 @@
 import type { Options } from '@wdio/types';
 import { config as loadEnv } from 'dotenv';
-import { CapabilitiesFactory } from './src/mobile/driver/capabilitiesFactory.js';
+import { CapabilitiesFactory } from './main/mobile/driver/capabilitiesFactory.js';
 
 loadEnv();
 

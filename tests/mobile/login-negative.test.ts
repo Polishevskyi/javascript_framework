@@ -7,7 +7,7 @@ import {
   loginScreen,
   LoginErrorType,
   LoginErrorTypes,
-} from '../../src/mobile/fixtures/baseTest.js';
+} from '../../main/mobile/fixtures/baseTest.js';
 
 describe('Login negative cases functionality', () => {
   const { invalidUsername, invalidPassword, randomUsername, randomPassword } =

@@ -41,7 +41,7 @@
       }
     },
     {
-      "files": ["src/utils/dataGenerator.ts"],
+      "files": ["main/utils/dataGenerator.ts"],
       "rules": {
         "max-classes-per-file": "off"
       }

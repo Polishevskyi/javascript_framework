@@ -48,10 +48,10 @@ junit.xml
 # -----------------------------------------------------------------------------
 # Mobile (WDIO / Appium)
 # -----------------------------------------------------------------------------
-src/mobile/apps/*.apk
-src/mobile/apps/*.ipa
-src/mobile/apps/*.zip
-src/mobile/apps/*.app
+main/mobile/apps/*.apk
+main/mobile/apps/*.ipa
+main/mobile/apps/*.zip
+main/mobile/apps/*.app
 .appiumrc
 appium.log
 
@@ -60,6 +60,7 @@ appium.log
 # -----------------------------------------------------------------------------
 *.log
 logs/
+log/
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*

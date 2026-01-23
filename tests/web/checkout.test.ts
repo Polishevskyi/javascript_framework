@@ -1,4 +1,4 @@
-import { test, expect } from '../../src/web/fixtures/baseTest.js';
+import { test, expect } from '../../main/web/fixtures/baseTest.js';
 
 test.describe('Checkout functionality', () => {
   test('Verify that complete checkout process works with generated user data', async ({

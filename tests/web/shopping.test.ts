@@ -1,4 +1,4 @@
-import { test, expect } from '../../src/web/fixtures/baseTest.js';
+import { test, expect } from '../../main/web/fixtures/baseTest.js';
 
 test.describe('Shopping cart functionality', () => {
   test('Verify that user can add multiple products to cart and remove one', async ({

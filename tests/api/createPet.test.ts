@@ -1,4 +1,4 @@
-import { test, expect, StatusCodes, PetResponseSchema } from '../../src/api/fixtures/baseTest.js';
+import { test, expect, StatusCodes, PetResponseSchema } from '../../main/api/fixtures/baseTest.js';
 
 test.describe('Create Pet', () => {
   test('Verify that pet can be created successfully with valid data', async ({ petSteps }) => {
